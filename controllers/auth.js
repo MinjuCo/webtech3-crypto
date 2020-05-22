@@ -1,11 +1,16 @@
 const User = require('./../models/User');
 
 const signup = async (req, res, next) => {
-  let username = req.body.username; //UI of postman
+  let email = req.body.username; //UI of postman
   let password = req.body.password;
+  let firstname = req.body.firstname;
+  let lastname = req.body.lastname;
   let coins = 100;
 
-  const user = new User({username: username});
+  const user = new User({username: email});
+  user.firstname = firstname;
+  user.lastname = lastname;
+  user.coins = coins;
   await user.setPassword(password);
   await user.save().then(result => {
     res.json({
@@ -13,7 +18,8 @@ const signup = async (req, res, next) => {
     });
   }).catch(error => {
     res.json({
-      "status": "error"
+      "status": "error",
+      "message": error
     });
   });
 }

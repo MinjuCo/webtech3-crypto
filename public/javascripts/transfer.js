@@ -36,7 +36,7 @@ document.querySelector("#btnSend").addEventListener("click", () => {
       if(json.status === "success"){
         document.querySelector(".info").classList.add("green");
         document.querySelector(".info").classList.remove("red");
-        document.querySelector(".info--text").innerHTML = "The coins has been trasnfered successfully.";
+        document.querySelector(".info--text").innerHTML = "The coins has been transfered successfully.";
       }else{
         document.querySelector(".info").classList.remove("green");
         document.querySelector(".info").classList.add("red");

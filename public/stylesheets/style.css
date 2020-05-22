@@ -131,6 +131,7 @@ h4, h5, h6 {
   background-color: #FDC70C;
   color: #FFFFFF;
   border: none;
+  cursor: pointer;
 }
 
 .row {
