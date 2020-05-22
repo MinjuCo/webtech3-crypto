@@ -4,6 +4,8 @@
 $yellow: #FDC70C;
 $gold-border: #F0A21F;
 $font-color-dark: #000000;
+$color-green: rgb(13, 177, 13);
+$color-red: rgb(192, 11, 11);
 $color-white: #FFFFFF;
 $font-size: 1em;
 $layout-breakpoint-small: 960px;
@@ -24,6 +26,20 @@ body{
   font-size: $font-size;
   background: url("../images/bg-pattern.jpg") rgba(224, 224, 224, 0.63) repeat;
   background-blend-mode: multiply;
+}
+
+h4, h5, h6{
+  margin: 0.3em 0;
+}
+
+.green{
+  color: $color-green;
+  font-weight: bold;
+}
+
+.red{
+  color: $color-red;
+  font-weight: bold;
 }
 
 .container{
@@ -82,6 +98,7 @@ body{
 .transaction{
   border-top: 1+px solid var(--secondary);
   border-bottom: 1+px solid var(--secondary);
+  padding: 1em 0;
 }
 
 .transaction__header{
@@ -90,6 +107,7 @@ body{
 
 .transaction__subject{
   text-transform: uppercase;
+  color: var(--secondary);
 }
 
 .transfer__form{

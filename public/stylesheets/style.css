@@ -14,6 +14,20 @@ body {
   background-blend-mode: multiply;
 }
 
+h4, h5, h6 {
+  margin: 0.3em 0;
+}
+
+.green {
+  color: #0db10d;
+  font-weight: bold;
+}
+
+.red {
+  color: #c00b0b;
+  font-weight: bold;
+}
+
 .container {
   padding: 1em;
   display: grid;
@@ -64,6 +78,7 @@ body {
 .transaction {
   border-top: 1px solid var(--secondary);
   border-bottom: 1px solid var(--secondary);
+  padding: 1em 0;
 }
 
 .transaction__header {
@@ -72,6 +87,7 @@ body {
 
 .transaction__subject {
   text-transform: uppercase;
+  color: var(--secondary);
 }
 
 .transfer__form {
