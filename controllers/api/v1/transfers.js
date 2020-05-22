@@ -16,6 +16,26 @@ const getAll = (req, res) => {
   });
 }
 
+const getOne = (req, res) => {
+  let user = "Mina";
+  let transferId = req.params.id;
+  Transfer.findOne({
+    $and: [
+      {$or: [ { sender: user }, { receiver: user } ]},
+      {_id: transferId}
+    ]
+  }, (err, doc) => {
+    if(!err){
+      res.json({
+        "status": "success",
+        "data": {
+          "transfer": doc
+        }
+      });
+    }
+  });
+}
+
 const create = (req, res) => {
   let transfer = new Transfer();
   transfer.sender = req.body.transfer.sender;
@@ -46,3 +66,4 @@ const create = (req, res) => {
 
 module.exports.create = create;
 module.exports.getAll = getAll;
+module.exports.getOne = getOne;
