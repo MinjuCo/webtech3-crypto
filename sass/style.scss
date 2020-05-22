@@ -1,0 +1,149 @@
+/* General styling */
+
+// Colors
+$yellow: #FDC70C;
+$gold-border: #F0A21F;
+$font-color-dark: #000000;
+$color-white: #FFFFFF;
+$font-size: 1em;
+$layout-breakpoint-small: 960px;
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swa");
+$font-family: Montserrat , Arial, sans-serif;
+
+*{
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+  font-family: $font-family;
+  --primary: $font-color-dark;
+  --secondary: gray;
+  font-size: $font-size;
+  background: url("../images/bg-pattern.jpg") rgba(224, 224, 224, 0.63) repeat;
+  background-blend-mode: multiply;
+}
+
+.container{
+  padding: 1em;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+
+  .wallet, .transactionHistory, .transfer{
+    grid-column: 1/span 2;
+    padding: 1em;
+    border-radius: 5px;
+    margin-bottom: 1em;
+    background-color: $color-white;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+  }
+
+  .wallet{
+    grid-row: 1/span 1;
+  }
+
+  .transactionHistory{
+    grid-row: 2/span 1;
+  }
+
+  .transfer{
+    grid-row: 3/span 1;
+  }
+}
+
+.balance__coins, #walletCoins, .transaction__header{
+  display: flex;
+  align-items: baseline;
+  flex-direction: row;
+}
+
+.balance__coins{
+  padding: 1em 1em;
+  //border: 1+px solid gray;
+  box-shadow: 0px 2px 5px lightgray;
+  border-radius: 5px;
+  justify-content: center;
+}
+
+#walletCoins{
+  align-items: center;
+  font-size: 1.5*$font-size;
+  font-weight: bold;
+
+  img{
+    width: 2em;
+    height: auto;
+    padding: 0.2em;
+  }
+}
+
+.transaction{
+  border-top: 1+px solid var(--secondary);
+  border-bottom: 1+px solid var(--secondary);
+}
+
+.transaction__header{
+  justify-content: space-between;
+}
+
+.transaction__subject{
+  text-transform: uppercase;
+}
+
+.transfer__form{
+  display: flex;
+  flex-direction: column;
+
+  *{
+    margin: 0.5em 0;
+  }
+}
+
+.transfer__form--input{
+  border: none;
+  padding: 0.8em 0.5em;
+  border-radius: 5+px;
+  border: 1+px solid var(--secondary);
+}
+
+.btn{
+  padding: 1em;
+  background-color: $yellow;
+  color: $color-white;
+  border: none;
+}
+
+
+
+@media (min-width: $layout-breakpoint-small) {
+  .container{
+    grid-template-rows: 1fr 2fr;
+    gap: 1+em;
+
+    .wallet, .transfer{
+      grid-column: 1/span 1;
+    }
+
+    .wallet{
+      grid-row: 1/span 1;
+      margin: 0;
+    }
+
+    .transactionHistory{
+      grid-column: 2/span 1;
+      grid-row: 1/span 2;
+    }
+
+    .transfer{
+      grid-row: 2/span 1;
+    }
+  }
+}
+
+@import 'nav.scss';
+
+
+
+

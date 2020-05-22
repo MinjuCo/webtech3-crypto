@@ -1,5 +1,42 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  include includes/navbar.pug
+  div(class="container")
+    div(class="wallet")
+      h1 Welcome to #{title}
+      div(class="wallet__item--balance")
+        h2 Current balance
+        div(class="balance__coins")
+          p(id="walletCoins") 100
+            img(src="images/coin.svg", alt="IMDC", class="balance__coins--img")
+    div(class="transactionHistory")
+      h2 Transaction history
+      div(class="transactions")
+        div(class="transaction")
+          div(class="transaction__header")
+            h3 Username
+            h5 Coins
+          div(class="transaction__body")
+            p(class="transaction__subject") Design
+            p(class="transaction__description") She helped me
+    div(class="transfer")
+      h2 Toss a coin to IMDer
+      div(class="transfer__form")
+        label(for="receiver") Username
+        input(type="email" id="receiver" class="transfer__form--input" placeholder="ex. username@student.thomasmore.be")
+        label(for="coins") Amount of coins
+        input(type="number" id="coins" class="transfer__form--input" placeholder="Amount of coins you want to send")
+        label(for="reason") Reason
+        select(id="reason" class="transfer__form--input")
+          option(value="") --select a reason--
+          option(value="Development help") Development help
+          option(value="Design help") Design help
+          option(value="Feedback") Feedback
+          option(value="Meeting deadlines") Meeting deadlines
+          option(value="Other") Other
+        label(for="message") Message
+        input(type="text" id="message" class="transfer__form--input" placeholder="ex. Thank you for helping me")
+        button(id="btnSend" class="btn transfer_btn") Transfer Coins
+
+
