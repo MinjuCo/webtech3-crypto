@@ -1,5 +1,21 @@
 const Transfer = require('../../../models/Transfers');
 
+const getAll = (req, res) => {
+  let user = "Mina";
+  Transfer.find({
+    $or: [ { sender: user }, { receiver: user } ]
+  }, (err, docs) => {
+    if(!err){
+      res.json({
+        "status": "success",
+        "data": {
+          "transfers": docs
+        }
+      });
+    }
+  });
+}
+
 const create = (req, res) => {
   let transfer = new Transfer();
   transfer.sender = req.body.transfer.sender;
@@ -29,3 +45,4 @@ const create = (req, res) => {
 }
 
 module.exports.create = create;
+module.exports.getAll = getAll;
