@@ -34,6 +34,13 @@ h4, h5, h6 {
   font-weight: bold;
 }
 
+.signin__link {
+  color: #FDC70C;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 1em;
+}
+
 .container {
   margin: 0 auto;
   top: 0;
@@ -43,7 +50,7 @@ h4, h5, h6 {
   display: grid;
   grid-template-columns: 2fr 1fr;
 }
-.container .wallet, .container .transactionHistory, .container .transfer {
+.container .wallet, .container .transactionHistory, .container .transfer, .container .signupBlock, .container .illustration {
   grid-column: 1/span 2;
   padding: 1em;
   border-radius: 5px;
@@ -104,15 +111,15 @@ h4, h5, h6 {
   color: var(--secondary);
 }
 
-.transfer__form {
+.transfer__form, .signup__form {
   display: flex;
   flex-direction: column;
 }
-.transfer__form * {
+.transfer__form *, .signup__form * {
   margin: 0.3em 0;
 }
 
-.transfer__form--input {
+.transfer__form--input, .signup__form--input {
   border: none;
   padding: 0.8em 0.5em;
   border-radius: 5px;
@@ -124,6 +131,29 @@ h4, h5, h6 {
   background-color: #FDC70C;
   color: #FFFFFF;
   border: none;
+}
+
+.row {
+  grid-column: 1/span 2;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 1em;
+}
+.row * {
+  grid-column: 1/span 2;
+  width: 100%;
+}
+.row .illustration {
+  display: none;
+  grid-row: 1/span 1;
+}
+.row .illustration img {
+  width: 100%;
+}
+.row .signupBlock {
+  grid-row: 1/span 1;
 }
 
 @media (min-width: 960px) {
@@ -146,6 +176,26 @@ h4, h5, h6 {
   }
   .container .transfer {
     grid-row: 2/span 1;
+  }
+  .container .signupBlock {
+    grid-column: 2/span 1;
+  }
+  .container .row .illustration {
+    display: block;
+    grid-column: 1/span 1;
+  }
+
+  .signup__form--row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .signup__form--group:first-child {
+    padding-right: 0.5em;
+  }
+
+  .signup__form--group:last-child {
+    padding-left: 0.5em;
   }
 
   h1, h2 {
