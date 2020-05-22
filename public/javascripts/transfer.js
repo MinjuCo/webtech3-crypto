@@ -26,7 +26,6 @@ document.querySelector("#btnSend").addEventListener("click", () => {
         }
       })
     }).then(result => {
-      console.log(result);
       return result.json();
     }).then(json => {
       primus.write({
@@ -35,15 +34,19 @@ document.querySelector("#btnSend").addEventListener("click", () => {
       });
 
       if(json.status === "success"){
-        document.querySelector(".info").classList.add("success");
-        document.querySelector(".info").classList.remove("error");
+        document.querySelector(".info").classList.add("green");
+        document.querySelector(".info").classList.remove("red");
         document.querySelector(".info--text").innerHTML = "The coins has been trasnfered successfully.";
       }else{
-        document.querySelector(".info").classList.remove("success");
-        document.querySelector(".info").classList.add("error");
+        document.querySelector(".info").classList.remove("green");
+        document.querySelector(".info").classList.add("red");
         document.querySelector(".info--text").innerHTML = json.message.message;
       }
-      console.log(json);
+      
+      document.querySelector("#receiver").value = "";
+      document.querySelector("#coins").value = "";
+      document.querySelector("#reason").value = "";
+      document.querySelector("#message").value = "";
     }).catch(err => {
       console.log(err);
     });
