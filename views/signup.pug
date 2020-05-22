@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  include includes/navbar.pug
+  div(class="container signup")
+    div(class="row")
+      div(class="illustration")
+        img(src="/images/saving.jpg", alt="Saving")
+      div(class="signupBlock")
+        h2 Sign in
+        div(class="signup__form")
+          div(class="signup__form--row")
+            div(class="signup__form--group")
+              label(for="firstname") First name
+              input(type="text" id="firstname" class="signup__form--input" placecholder="ex. John")
+            div(class="signup__form--group")
+              label(for="lastname") Last name
+              input(type="text" id="lastname" class="signup__form--input" placecholder="ex. Doe")
+          label(for="email") Email
+          input(type="email" required id="email" class="signup__form--input" placecholder="ex. johndoe@student.thomasmore.be")
+          label(for="password") Password
+          input(type="password" id="password" class="signup__form--input")
+          label(for="repeatPassword") Confirm password
+          input(type="password" id="repeatPassword" class="signup__form--input")
+          button(id="btnSignup" class="btn signup_btn") Sign up
+        p Already have an account?
+          a(href="/login" class="signin__link") Sign in
+
+      

@@ -48,6 +48,13 @@ h4, h5, h6{
   font-weight: bold;
 }
 
+.signin__link{
+  color: $yellow;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 1em;
+}
+
 .container{
   margin: 0 auto;
   top: 0;
@@ -57,7 +64,7 @@ h4, h5, h6{
   display: grid;
   grid-template-columns: 2fr 1fr;
 
-  .wallet, .transactionHistory, .transfer{
+  .wallet, .transactionHistory, .transfer, .signupBlock, .illustration{
     grid-column: 1/span 2;
     padding: 1em;
     border-radius: 5px;
@@ -124,7 +131,7 @@ h4, h5, h6{
   color: var(--secondary);
 }
 
-.transfer__form{
+.transfer__form, .signup__form{
   display: flex;
   flex-direction: column;
 
@@ -133,7 +140,7 @@ h4, h5, h6{
   }
 }
 
-.transfer__form--input{
+.transfer__form--input, .signup__form--input{
   border: none;
   padding: 0.8em 0.5em;
   border-radius: 5+px;
@@ -145,6 +152,34 @@ h4, h5, h6{
   background-color: $yellow;
   color: $color-white;
   border: none;
+}
+
+//Sign up
+.row{
+  grid-column: 1/ span 2;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 1em;
+
+  * {
+    grid-column: 1/span 2;
+    width: 100%;
+  }
+
+  .illustration{
+    display: none;
+    grid-row: 1/span 1;
+
+    img{
+      width: 100%;
+    }
+  }
+
+  .signupBlock{
+    grid-row: 1/span 1;
+  }
 }
 
 
@@ -173,11 +208,34 @@ h4, h5, h6{
     .transfer{
       grid-row: 2/span 1;
     }
+
+    .signupBlock{
+      grid-column: 2/span 1;
+    }
+
+    .row .illustration{
+      display: block;
+      grid-column: 1/span 1;
+    }
+  }
+
+  .signup__form--row{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .signup__form--group:first-child{
+    padding-right: 0.5em;
+  }
+
+  .signup__form--group:last-child{
+    padding-left: 0.5em;
   }
 
   h1, h2{
     margin: 0 0 0.3em 0;
   }
+
 }
 
 @import 'nav.scss';
