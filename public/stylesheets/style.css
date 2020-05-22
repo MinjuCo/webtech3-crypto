@@ -5,6 +5,8 @@
 }
 
 body {
+  position: relative;
+  height: 100vh;
   margin: 0;
   font-family: Montserrat, Arial, sans-serif;
   --primary: $font-color-dark;
@@ -12,6 +14,10 @@ body {
   font-size: 1em;
   background: url("../images/bg-pattern.jpg") rgba(224, 224, 224, 0.63) repeat;
   background-blend-mode: multiply;
+}
+
+h1, h2 {
+  margin: 0.5em 0;
 }
 
 h4, h5, h6 {
@@ -29,6 +35,10 @@ h4, h5, h6 {
 }
 
 .container {
+  margin: 0 auto;
+  top: 0;
+  width: 100%;
+  max-height: 90vh;
   padding: 1em;
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -46,19 +56,22 @@ h4, h5, h6 {
 }
 .container .transactionHistory {
   grid-row: 2/span 1;
+  overflow-y: scroll;
+  max-height: 800px;
 }
 .container .transfer {
   grid-row: 3/span 1;
 }
 
-.balance__coins, #walletCoins, .transaction__header {
+.balance__coins, #walletCoins, .transaction__header, .wallet__item--balance {
   display: flex;
   align-items: baseline;
   flex-direction: row;
 }
 
 .balance__coins {
-  padding: 1em 1em;
+  margin-left: 1em;
+  padding: 0.2em 1em;
   box-shadow: 0px 2px 5px lightgray;
   border-radius: 5px;
   justify-content: center;
@@ -68,6 +81,7 @@ h4, h5, h6 {
   align-items: center;
   font-size: 1.5em;
   font-weight: bold;
+  margin: 0;
 }
 #walletCoins img {
   width: 2em;
@@ -95,7 +109,7 @@ h4, h5, h6 {
   flex-direction: column;
 }
 .transfer__form * {
-  margin: 0.5em 0;
+  margin: 0.3em 0;
 }
 
 .transfer__form--input {
@@ -114,8 +128,10 @@ h4, h5, h6 {
 
 @media (min-width: 960px) {
   .container {
-    grid-template-rows: 1fr 2fr;
-    gap: 1em;
+    position: absolute;
+    padding-top: 5.5em;
+    grid-template-rows: 0.5fr 2fr;
+    gap: 0.7em;
   }
   .container .wallet, .container .transfer {
     grid-column: 1/span 1;
@@ -131,8 +147,15 @@ h4, h5, h6 {
   .container .transfer {
     grid-row: 2/span 1;
   }
+
+  h1, h2 {
+    margin: 0 0 0.3em 0;
+  }
 }
 .nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   background-color: #FFFFFF;
   width: 100%;
   padding: 0.5em 1em;

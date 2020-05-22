@@ -7,10 +7,7 @@ const transferSchema = new Schema({
     required: true
   },
   reason: String,
-  message: {
-    type: String,
-    required: true
-  },
+  message: String,
   coins: {
     type: mongoose.Types.Decimal128,
     required: true

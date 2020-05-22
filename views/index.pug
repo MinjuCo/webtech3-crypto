@@ -14,6 +14,8 @@ block content
       h2(id="transactionHistory__title") Transaction history
     div(class="transfer")
       h2 Toss a coin to IMDer
+      div(class="info")
+        p(class="info--text")
       div(class="transfer__form")
         label(for="receiver") Username
         input(type="email" id="receiver" class="transfer__form--input" placeholder="ex. username@student.thomasmore.be")
@@ -32,5 +34,6 @@ block content
         button(id="btnSend" class="btn transfer_btn") Transfer Coins
   script(src="/primus/primus.js")
   script(src="/javascripts/app.js")
+  script(src="/javascripts/transfer.js")
 
 

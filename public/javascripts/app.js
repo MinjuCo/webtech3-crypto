@@ -9,10 +9,28 @@ primus = Primus.connect(base_url, {
 });
 
 primus.on('data', (json) => {
-  if(json.action === "addTransfer"){
+  if(json.action === "updateTransfer"){
     appendTransfer(json.data);
   }
 });
+
+let appendTransfer = (json) => {
+  let newTransfer =`<div class="transaction">`
+    if(json.data.transfer.receiver === "Mina"){
+      newTransfer += `<h5 class="green">Received from</h5>
+      <div class="transaction__header"><h4>${json.data.transfer.sender}</h4><h5 class="green">${json.data.transfer.coins.$numberDecimal} IMDC</h5></div>`;
+    }else{
+      newTransfer += `<h5 class="red">Sended to</h5>
+      <div class="transaction__header"><h4>${json.data.transfer.receiver}</h4><h5 class="red">- ${json.data.transfer.coins.$numberDecimal} IMDC</h5></div>`;
+    }
+
+    newTransfer += `<div class="transaction__body">
+      <h6 class="transaction__subject">${json.data.transfer.reason}</h6>
+      <p class="transaction__description">${json.data.transfer.message}</p>
+    </div>
+    </div>`;
+    document.querySelector("#transactionHistory__title").insertAdjacentHTML('afterend', newTransfer);
+}
 
 fetch(base_url + "/api/v1/transfers", {
   //Authorization
