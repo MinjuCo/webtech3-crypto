@@ -8,12 +8,16 @@ router.get('/', function(req, res, next) {
 
 /* GET sign up. */
 router.get('/register', function(req, res, next) {
-  res.render('signup', {path: 'login', action: 'Sign in'});
+  res.render('signup', {title: 'Sign up', path: 'login', action: 'Sign in'});
 });
 
 /* GET sign in. */
 router.get('/login', function(req, res, next) {
-  res.render('signin', {path: 'register', action: 'Sign up'});
+  res.render('signin', {title: 'Sign in', path: 'register', action: 'Sign up'});
+});
+
+router.get('/logout', function(req, res, next) {
+  res.render('logout', {title: 'Log out'});
 });
 
 module.exports = router;

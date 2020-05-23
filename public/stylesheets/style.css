@@ -151,10 +151,54 @@ h4, h5, h6 {
   grid-row: 1/span 1;
 }
 .row .illustration img {
-  width: 100%;
+  width: 80%;
 }
 .row .signupBlock {
   grid-row: 1/span 1;
+}
+
+.autocomplete {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.autocomplete input {
+  width: 100%;
+}
+
+.autocomplete__items {
+  position: absolute;
+  border: 1px solid lightgray;
+  border-top: 0;
+  border-bottom: 0;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  margin: 0;
+  right: 0;
+}
+.autocomplete__items * {
+  margin: 0;
+}
+
+.autocomplete__items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: white;
+  border-bottom: 1px solid #d4d4d4;
+}
+
+/*when hovering an item:*/
+.autocomplete__items div:hover {
+  background-color: var(--secondary);
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: #FDC70C !important;
 }
 
 @media (min-width: 960px) {
@@ -182,8 +226,9 @@ h4, h5, h6 {
     grid-column: 2/span 1;
   }
   .container .row .illustration {
-    display: block;
+    display: flex;
     grid-column: 1/span 1;
+    justify-content: center;
   }
 
   .signup__form--row {

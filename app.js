@@ -8,6 +8,7 @@ const cors = require('cors');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const apiTransfersRouter = require('./routes/api/v1/transfers');
+const apiLeaderboardRouter = require('./routes/api/v1/leaderboard');
 const passport = require('./passport/passport');
 
 const mongoose = require('mongoose');
@@ -33,6 +34,7 @@ app.use(cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/v1/transfers', passport.authenticate('jwt', { session: false}), apiTransfersRouter);
+app.use('/api/v1/leaderboard', apiLeaderboardRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

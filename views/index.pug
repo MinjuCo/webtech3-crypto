@@ -19,7 +19,8 @@ block content
         p(class="info--text")
       div(class="transfer__form")
         label(for="receiver") Username
-        input(type="email" id="receiver" class="transfer__form--input" placeholder="ex. username@student.thomasmore.be")
+        div(class="autocomplete")
+          input(type="email" id="receiver" class="transfer__form--input" placeholder="ex. username@student.thomasmore.be")
         label(for="coins") Amount of coins
         input(type="number" id="coins" class="transfer__form--input" placeholder="Amount of coins you want to send")
         label(for="reason") Reason
@@ -36,5 +37,6 @@ block content
   script(src="/primus/primus.js")
   script(src="/javascripts/app.js")
   script(src="/javascripts/transfer.js")
+  script(src="/javascripts/autocomplete.js")
 
 
