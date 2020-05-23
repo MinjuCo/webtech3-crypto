@@ -4,11 +4,12 @@ block content
   include includes/navbar.pug
   div(class="container")
     div(class="wallet")
-      h1 Welcome to #{title}
+      h1 Welcome,
       div(class="wallet__item--balance")
         h2 Current balance
         div(class="balance__coins")
-          p(id="walletCoins") 100
+          p(id="walletCoins")
+            span(class="coinValue") 100
             img(src="images/coin.svg", alt="IMDC", class="balance__coins--img")
     div(class="transactionHistory")
       h2(id="transactionHistory__title") Transaction history

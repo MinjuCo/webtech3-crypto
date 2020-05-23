@@ -26,6 +26,10 @@ let btnSignup = document.querySelector('#btnSignup').addEventListener("click", (
         document.querySelector(".info").classList.add("green");
         document.querySelector(".info").classList.remove("red");
         document.querySelector(".info--text").innerHTML = "Sign up completed!";
+
+        let token = json.data.token;
+        localStorage.setItem("token", token);
+        window.location.href = "/";
       }
     });
   }else{

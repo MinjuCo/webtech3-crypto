@@ -1,9 +1,8 @@
 const Transfer = require('../../../models/Transfers');
 
 const getAll = (req, res) => {
-  let user = "Mina";
   Transfer.find({
-    $or: [ { sender: user }, { receiver: user } ]
+    $or: [ { sender: req.user.username }, { receiver: req.user.username } ]
   }, (err, docs) => {
     if(!err){
       res.json({
@@ -17,7 +16,7 @@ const getAll = (req, res) => {
 }
 
 const getOne = (req, res) => {
-  let user = "Mina";
+  let user = req.user.username;
   let transferId = req.params.id;
   Transfer.findOne({
     $and: [
@@ -38,7 +37,7 @@ const getOne = (req, res) => {
 
 const create = (req, res) => {
   let transfer = new Transfer();
-  transfer.sender = req.body.transfer.sender;
+  transfer.sender = req.user.username;
   transfer.receiver = req.body.transfer.receiver;
   transfer.reason = req.body.transfer.reason;
   transfer.message = req.body.transfer.message;

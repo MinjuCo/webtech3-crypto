@@ -5,19 +5,16 @@ document.querySelector("#btnSend").addEventListener("click", () => {
   let message = document.querySelector("#message").value;
   let date = new Date()
 
-  console.log(receiver);
-  console.log(reason);
-  console.log(message);
-
-  if(receiver != "" && (coins && !isNaN(coins)) && reason != ""){
+  if(receiver != "" && (coins && !isNaN(coins)) && reason != "" && (userCoins-coins >= 0)){
     fetch(base_url + '/api/v1/transfers/', {
       method: "post",
       'headers':{
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem("token")
       },
       body: JSON.stringify({
         "transfer": {
-          "sender": "Mina",
+          "sender": userUserName,
           "receiver": receiver,
           "coins": parseFloat(coins),
           "reason": reason,
@@ -28,15 +25,37 @@ document.querySelector("#btnSend").addEventListener("click", () => {
     }).then(result => {
       return result.json();
     }).then(json => {
-      primus.write({
-        "action": "updateTransfer",
-        "data": json
-      });
-
       if(json.status === "success"){
-        document.querySelector(".info").classList.add("green");
-        document.querySelector(".info").classList.remove("red");
-        document.querySelector(".info--text").innerHTML = "The coins has been transfered successfully.";
+        let transferJson = json;
+
+        fetch(base_url + '/users/coinsTransfered/' + userUserName, {
+          method: "put",
+          'headers':{
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem("token")
+          },
+          body: JSON.stringify({
+            "coins": -coins
+          })
+        }).then(result => {
+            return result.json();
+        }).then(json => {
+            if(json.status === "success"){
+              primus.write({
+                "action": "updateTransfer",
+                "data": transferJson
+              });
+
+              //Success message
+              document.querySelector(".info").classList.add("green");
+              document.querySelector(".info").classList.remove("red");
+              document.querySelector(".info--text").innerHTML = "The coins has been transfered successfully.";
+            }
+            console.log(json);
+        }).catch(err => {
+            console.log(err);
+        });
+
       }else{
         document.querySelector(".info").classList.remove("green");
         document.querySelector(".info").classList.add("red");
@@ -56,6 +75,12 @@ document.querySelector("#btnSend").addEventListener("click", () => {
       document.querySelector(".info").classList.remove("green");
       document.querySelector(".info").classList.add("red");
       document.querySelector(".info--text").innerHTML = "You must write a number";
+    }
+
+    if(userCoins - coins < 0 ){
+      document.querySelector(".info").classList.remove("green");
+      document.querySelector(".info").classList.add("red");
+      document.querySelector(".info--text").innerHTML = "Your balance is to low";
     }
 
     if(reason == ""){

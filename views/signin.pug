@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  include includes/navbar.pug
+  div(class="container signup")
+    div(class="row")
+      div(class="illustration")
+        img(src="/images/saving.jpg", alt="Saving")
+      div(class="signupBlock")
+        h2 Sign in
+        div(class="info")
+          p(class="info--text")
+        div(class="signup__form")
+          label(for="email") Email
+          input(type="email" required id="email" class="signup__form--input" placecholder="ex. johndoe@student.thomasmore.be")
+          label(for="password") Password
+          input(type="password" id="password" class="signup__form--input")
+          button(id="btnSignin" class="btn signup_btn") Log in
+        p Don't have any account?
+          a(href="/register" class="signin__link") Sign up
+  script(src="/javascripts/signin.js")
+
+      
