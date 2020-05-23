@@ -24,28 +24,6 @@ primus.on('data', (json) => {
 });
 
 let appendTransfer = (json) => {
-
-  fetch(base_url + '/users/coinsTransfered/' + json.data.transfer.receiver, {
-    method: "put",
-    'headers':{
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem("token")
-    },
-    body: JSON.stringify({
-      "coins": json.data.transfer.coins.$numberDecimal
-    })
-  }).then(result => {
-      return result.json();
-  }).then(json => {
-      if(json.status === "success"){
-        primus.write({
-          "action": "updatePage"
-        });
-      }
-      console.log(json);
-  }).catch(err => {
-      console.log(err);
-  });
   
   let newTransfer =`<div class="transaction">`
     if(json.data.transfer.receiver === "Mina"){
@@ -79,7 +57,7 @@ let fetchUser = () =>{
       userCoins = json.user.coins.$numberDecimal;
       currentUserId = json.user.id;
   
-      document.querySelector("h1").innerHTML += " " + userName;
+      document.querySelector("h1").innerHTML = "Welcome, " + userName;
       document.querySelector(".coinValue").innerHTML = userCoins;
     }
   }).catch(err => {

@@ -41,6 +41,28 @@ document.querySelector("#btnSend").addEventListener("click", () => {
             return result.json();
         }).then(json => {
             if(json.status === "success"){
+              fetch(base_url + '/users/coinsTransfered/' + transferJson.data.transfer.receiver, {
+                method: "put",
+                'headers':{
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem("token")
+                },
+                body: JSON.stringify({
+                  "coins": transferJson.data.transfer.coins.$numberDecimal
+                })
+              }).then(result => {
+                  return result.json();
+              }).then(json => {
+                  if(json.status === "success"){
+                    primus.write({
+                      "action": "updatePage"
+                    });
+                  }
+                  console.log(json);
+              }).catch(err => {
+                  console.log(err);
+              });
+
               primus.write({
                 "action": "updateTransfer",
                 "data": transferJson
