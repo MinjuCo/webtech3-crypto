@@ -1,4 +1,4 @@
-let base_url = "http://localhost:3000";
+let base_url = "https://imdcoin.herokuapp.com";
 
 let btnSignup = document.querySelector('#btnSignup').addEventListener("click", () => {
   let firstname = document.querySelector('#firstname').value.trim();
